@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MaterialManagerApp.Views.InicioPage"
+             Title="Inicio">
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="16">
+            <Label Text="Bienvenido al gestor de materiales" Style="{StaticResource TitleStyle}" />
+            <Label Text="Desde aquí podrás administrar los materiales, controlar el stock, gestionar acopios y clientes." LineBreakMode="WordWrap" />
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

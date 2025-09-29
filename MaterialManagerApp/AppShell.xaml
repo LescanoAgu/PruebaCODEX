@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Shell
+    x:Class="MaterialManagerApp.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:MaterialManagerApp.Views"
+    FlyoutBehavior="Locked"
+    Title="Gestor de Materiales">
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Element" ApplyToDerivedTypes="True">
+                <Setter Property="Shell.BackgroundColor" Value="{AppThemeBinding Light={StaticResource SurfaceColor}, Dark={StaticResource SurfaceDarkColor}}" />
+                <Setter Property="Shell.ForegroundColor" Value="{StaticResource PrimaryTextColor}" />
+            </Style>
+        </ResourceDictionary>
+    </Shell.Resources>
+
+    <FlyoutItem Title="Inicio" Route="Inicio">
+        <ShellContent ContentTemplate="{DataTemplate views:InicioPage}" />
+    </FlyoutItem>
+    <FlyoutItem Title="Materiales" Route="Materiales">
+        <ShellContent ContentTemplate="{DataTemplate views:MaterialesPage}" />
+    </FlyoutItem>
+    <FlyoutItem Title="Stock" Route="Stock">
+        <ShellContent ContentTemplate="{DataTemplate views:StockPage}" />
+    </FlyoutItem>
+    <FlyoutItem Title="Acopio" Route="Acopio">
+        <ShellContent ContentTemplate="{DataTemplate views:AcopioPage}" />
+    </FlyoutItem>
+    <FlyoutItem Title="Clientes" Route="Clientes">
+        <ShellContent ContentTemplate="{DataTemplate views:ClientesPage}" />
+    </FlyoutItem>
+</Shell>

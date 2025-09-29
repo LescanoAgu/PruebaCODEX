@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MaterialManagerApp.Views.MaterialesPage"
+             Title="Materiales">
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="20">
+            <Label Text="Administración de materiales" Style="{StaticResource TitleStyle}" />
+            <Grid ColumnDefinitions="*,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto" ColumnSpacing="12" RowSpacing="12">
+                <Label Text="Código" Grid.Row="0" Grid.Column="0" VerticalTextAlignment="Center" />
+                <Entry Grid.Row="0" Grid.Column="1" Placeholder="Ej: MAT-001" Text="{Binding Codigo}" />
+
+                <Label Text="Categoría" Grid.Row="1" Grid.Column="0" VerticalTextAlignment="Center" />
+                <Entry Grid.Row="1" Grid.Column="1" Placeholder="Ej: Hormigón" Text="{Binding Categoria}" />
+
+                <Label Text="Cantidad Inicial" Grid.Row="2" Grid.Column="0" VerticalTextAlignment="Center" />
+                <Entry Grid.Row="2" Grid.Column="1" Keyboard="Numeric" Text="{Binding CantidadInicial}" />
+
+                <Label Text="Unidad de medida" Grid.Row="3" Grid.Column="0" VerticalTextAlignment="Center" />
+                <Entry Grid.Row="3" Grid.Column="1" Placeholder="Ej: m³" Text="{Binding UnidadMedida}" />
+
+                <Label Text="Precio" Grid.Row="4" Grid.Column="0" VerticalTextAlignment="Center" />
+                <Entry Grid.Row="4" Grid.Column="1" Keyboard="Numeric" Text="{Binding Precio}" />
+
+                <Label Text="Total en Stock" Grid.Row="5" Grid.Column="0" VerticalTextAlignment="Center" />
+                <Entry Grid.Row="5" Grid.Column="1" Keyboard="Numeric" Text="{Binding TotalEnStock}" />
+            </Grid>
+
+            <Button Text="Agregar material" Command="{Binding AgregarMaterialCommand}" />
+
+            <Border StrokeThickness="1" Stroke="#cccccc" Padding="12" IsVisible="{Binding Mensaje, Converter={StaticResource NullToBoolConverter}}">
+                <Label Text="{Binding Mensaje}" TextColor="{Binding EsError, Converter={StaticResource BoolToColorConverter}}" />
+            </Border>
+
+            <CollectionView ItemsSource="{Binding Materiales}">
+                <CollectionView.Header>
+                    <Grid ColumnDefinitions="2*,*,*,*,*,Auto" Padding="0,0,0,8">
+                        <Label Text="Código" FontAttributes="Bold" />
+                        <Label Text="Categoría" FontAttributes="Bold" Grid.Column="1" />
+                        <Label Text="Cantidad" FontAttributes="Bold" Grid.Column="2" />
+                        <Label Text="Unidad" FontAttributes="Bold" Grid.Column="3" />
+                        <Label Text="Precio" FontAttributes="Bold" Grid.Column="4" />
+                        <Label Text="Stock" FontAttributes="Bold" Grid.Column="5" />
+                    </Grid>
+                </CollectionView.Header>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid ColumnDefinitions="2*,*,*,*,*,Auto" Padding="0,6">
+                            <Label Text="{Binding Codigo}" />
+                            <Label Text="{Binding Categoria}" Grid.Column="1" />
+                            <Label Text="{Binding CantidadInicial}" Grid.Column="2" />
+                            <Label Text="{Binding UnidadMedida}" Grid.Column="3" />
+                            <Label Text="{Binding Precio, StringFormat='{}{0:C}'}" Grid.Column="4" />
+                            <Label Text="{Binding TotalEnStock}" Grid.Column="5" />
+                            <Button Text="Eliminar"
+                                    Grid.Column="6"
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}}, Path=BindingContext.EliminarMaterialCommand}"
+                                    CommandParameter="{Binding .}" />
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                <CollectionView.EmptyView>
+                    <StackLayout Padding="12" HorizontalOptions="Center">
+                        <Label Text="No hay materiales cargados" />
+                    </StackLayout>
+                </CollectionView.EmptyView>
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

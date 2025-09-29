@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    xmlns:converters="clr-namespace:MaterialManagerApp.Converters;assembly=MaterialManagerApp">
+    <converters:NullToBoolConverter x:Key="NullToBoolConverter" />
+    <converters:BoolToColorConverter x:Key="BoolToColorConverter"
+                                     TrueColor="{StaticResource ErrorColor}"
+                                     FalseColor="{StaticResource SuccessColor}" />
+
+    <Style TargetType="ContentPage">
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource SurfaceColor}, Dark={StaticResource SurfaceDarkColor}}" />
+    </Style>
+
+    <Style x:Key="TitleStyle" TargetType="Label">
+        <Setter Property="FontSize" Value="24" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="TextColor" Value="{StaticResource PrimaryColor}" />
+    </Style>
+</ResourceDictionary>
